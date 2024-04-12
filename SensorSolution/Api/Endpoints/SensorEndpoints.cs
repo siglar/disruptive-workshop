@@ -24,6 +24,8 @@ namespace Api.Endpoints
 
             Console.WriteLine($"Hello {disruptiveData.Labels.Name}. This is your sensor 🌡️");
             Console.WriteLine($"The current temperature is {disruptiveData.Event.Data.Temperature.Value}" + "️\u00b0C");
+            
+            // Disruptive will resend the event until it receives a 200 OK
             return TypedResults.Ok();
         }
     }
