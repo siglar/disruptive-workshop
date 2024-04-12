@@ -1,4 +1,4 @@
-namespace Api.Models
+namespace Exercise1.Models
 {
     public class DisruptiveTemperature
     {

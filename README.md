@@ -10,7 +10,7 @@ The API is written in C# with .NET 8. Therefore there are a couple of requiremen
 - Install the .NET 8 SDK. Find and download (the newest version) [here](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 - Write `dotnet --info` in a terminal to check that it successfully installed. Might have to restart the terminal first.
 
-In a terminal, navigate to the `API` directory in this repo and execute `dotnet watch`. The API should now be running on [http://localhost:5047](http://localhost:5047) (the port might be different, so take not of that). Swagger should be exposed on [http://localhost:5047/swagger](http://localhost:5047/swagger). Since we ran `dotnet watch` the code should auto recompile on changes, but it's still a bit janky, so you can do `cmd + r` or `ctrl + r` in the terminal to force it to recompile.
+In a terminal, navigate to the `API` directory in this repo and execute `dotnet watch`. The API should now be running on [http://localhost:1337](http://localhost:1337). Swagger should be exposed on [http://localhost:1337/swagger](http://localhost:1337/swagger). Since we ran `dotnet watch` the code should auto recompile on changes, but it's still a bit janky, so you can do `cmd + r` or `ctrl + r` in the terminal to force it to recompile.
 
 Keep the API running and let's continue.
 
@@ -39,7 +39,7 @@ ngrok is a free proxy service that enables forwarding HTTPS traffic from a publi
 
 Sadly, they now require an account to use it. Without an account you wont be able to obtain an access token. So go ahead and create a user account on their website. When you've done this (and installed it) log in an copy the command that contains your token. It should look something like this: `ngrok config add-authtoken <your_token>`
 
-Now your ready to create a proxy. To do so, run: `ngrok http 5047`. The number here is your localhost port, so change it if it differs from the example.
+Now your ready to create a proxy. To do so, run: `ngrok http 1337`.
 
 If successful, you'll now have a proxy. It should look like this:
 ![proxy](./Images/proxy.jpg)

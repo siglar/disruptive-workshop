@@ -1,7 +1,7 @@
-using Api.Models;
+using Exercise1.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Endpoints
+namespace Exercise1.Endpoints
 {
     public static class Bookings
     {
