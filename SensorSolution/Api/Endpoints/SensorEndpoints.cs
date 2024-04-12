@@ -7,7 +7,7 @@ namespace Api.Endpoints
     {
         public static void RegisterSensorEndpoints(this IEndpointRouteBuilder routes)
         {
-            var sensorGroup = routes.MapGroup("sensor").WithTags("Sensor");
+            var sensorGroup = routes.MapGroup("").WithTags("Sensor");
 
             sensorGroup
                 .MapPost("", Post)
@@ -23,6 +23,7 @@ namespace Api.Endpoints
             }
 
             Console.WriteLine($"Hello {disruptiveData.Labels.Name}. This is your sensor 🌡️");
+            Console.WriteLine($"The current temperature is {disruptiveData.Event.Data.Temperature.Value}" + "️\u00b0C");
             return TypedResults.Ok();
         }
     }

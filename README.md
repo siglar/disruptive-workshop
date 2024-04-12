@@ -41,11 +41,9 @@ If successful, you'll now have a proxy. It should look like this:
 
 Leave ngrok running and copy the URL. One important note to make: <i> restarting ngrok will produce a different URL. </i> Therefore, try to keep it running throughout the whole workshop.
 
-Now that you have a URL, return to the Disruptive portal and navigate to your data connector. Paste the URL in the `Endpoint URL` textfield and append `/Sensor` on the end. Like this:
+Now that you have a URL, return to the Disruptive portal and navigate to your data connector. Paste the URL in the `Endpoint URL` textfield. Like this:
 
-![alt text](./Images/details.png)
-
-So the URL should look something like `https://just-an-example-do-not-use.ngrok-free.app/Sensor`. Remember the `/Sensor` part!
+![alt text](./Images/endpoint.png)
 
 Now enable your data connector. It's the switch that looks like this:
 
