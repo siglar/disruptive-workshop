@@ -32,6 +32,11 @@ Simply put; a data connector is a webhook. You need to configure it to forward d
 
 ngrok is a free proxy service that enables forwarding HTTPS traffic from a publicly accessible URL to a port on localhost. So we can use it to create an online endpoint that'll forward data to our computers. Go to their [download page](https://ngrok.com/download) to find instructions on how to download and install it.
 
+> [!IMPORTANT]
+> WithSecure will quarantine ngrok on MacOS from both the official Homebrew cask and the Ngrok Homebrew tap.
+> If you encounter any problems running ngrok on MacOS you can exclude Homebrew from the quarantine.
+> Go to WithSecure -> Settings -> Malware Protection -> Scanning exclusions and add the ngrok binary.
+
 Sadly, they now require an account to use it. Without an account you wont be able to obtain an access token. So go ahead and create a user account on their website. When you've done this (and installed it) log in an copy the command that contains your token. It should look something like this: `ngrok config add-authtoken <your_token>`
 
 Now your ready to create a proxy. To do so, run: `ngrok http 5047`. The number here is your localhost port, so change it if it differs from the example.
