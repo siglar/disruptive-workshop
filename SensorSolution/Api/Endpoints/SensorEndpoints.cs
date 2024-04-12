@@ -14,18 +14,8 @@ namespace Api.Endpoints
                 .WithOpenApi();
         }
 
-        private static IResult Post(
-            [FromBody] DisruptiveData disruptiveData,
-            CancellationToken cancellationToken = default
-            )
+        private static IResult Post([FromBody] DisruptiveData disruptiveData)
         {
-            // Change the following to your name, and uncomment the code.
-            // That way you're only working on yor own sensor 🎉
-            // if (disruptiveData.Labels.Name is not "Your_Name")
-            // {
-            //     return TypedResults.BadRequest();
-            // }
-            
             if (disruptiveData.Event.Data.Temperature is null)
             {
                 // We only handle temperature events

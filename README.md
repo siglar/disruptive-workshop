@@ -22,7 +22,7 @@ This endpoint (let's call it the sensor-endpoint) receives sensor data from Disr
 
 # 1.2 - The Disruptive Portal
 
-You should all have been given access to the [Disruptive portal](https://studio.disruptive-technologies.com/). Shout out if you haven't. Log in with your credentials and choose `Morten Salomonsen Inventory` when logged in. In the `Sensors & Cloud Connectors` page you can see all the devices that are configurable in this project. You should have a sensor named after you. That's neat!
+You should all have been given access to the [Disruptive portal](https://studio.disruptive-technologies.com/). Shout out if you haven't. Log in with your credentials and choose the project with your name. In the `Sensors & Cloud Connectors` page you can see all the devices that are configurable in this project. You should have a sensor named after you. That's neat!
 
 Now, navigate to `API Integrations` and the choose `Data connectors`. Again, here you'll have a connector named after you. Doubly neat!
 
@@ -34,7 +34,7 @@ ngrok is a free proxy service that enables forwarding HTTPS traffic from a publi
 
 Sadly, they now require an account to use it. Without an account you wont be able to obtain an access token. So go ahead and create a user account on their website. When you've done this (and installed it) log in an copy the command that contains your token. It should look something like this: `ngrok config add-authtoken <your_token>`
 
-Now your ready to create a proxy. To do so, run: `ngrok http 5047`
+Now your ready to create a proxy. To do so, run: `ngrok http 5047`. The number here is your localhost port, so change it if it differs from the example.
 
 If successful, you'll now have a proxy. It should look like this:
 ![proxy](./Images/proxy.jpg)
