@@ -80,7 +80,7 @@ public class TemperatureHub : Hub<ITemperatureHub>
 
 This code implements a method in the `TemperatureHub` that allows us to broadcast the temperature to all listening clients.
 
-Now navigate to the [SensorEndpoint]('./api/Endpoints/SensorEndpoints.cs') file and modify the Post method to like this:
+Now navigate to the [SensorEndpoint](api/Endpoints/SensorEndpoints.cs) file and modify the Post method to this:
 
 ```csharp
 private static async Task<IResult> Post(
