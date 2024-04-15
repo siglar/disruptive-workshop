@@ -12,7 +12,7 @@ namespace Exercise4.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sensor",
+                name: "Sensors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,11 +21,11 @@ namespace Exercise4.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sensor", x => x.Id);
+                    table.PrimaryKey("PK_Sensors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SensorValue",
+                name: "SensorValues",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -36,35 +36,35 @@ namespace Exercise4.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SensorValue", x => x.Id);
+                    table.PrimaryKey("PK_SensorValues", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SensorValue_Sensor_SensorId",
+                        name: "FK_SensorValues_Sensors_SensorId",
                         column: x => x.SensorId,
-                        principalTable: "Sensor",
+                        principalTable: "Sensors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sensor_DeviceId",
-                table: "Sensor",
-                column: "DeviceId",
-                unique: true);
+                name: "IX_SensorValues_SensorId",
+                table: "SensorValues",
+                column: "SensorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SensorValue_SensorId",
-                table: "SensorValue",
-                column: "SensorId");
+                name: "IX_Sensors_DeviceId",
+                table: "Sensors",
+                column: "DeviceId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SensorValue");
+                name: "SensorValues");
 
             migrationBuilder.DropTable(
-                name: "Sensor");
+                name: "Sensors");
         }
     }
 }
