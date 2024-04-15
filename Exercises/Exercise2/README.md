@@ -122,3 +122,5 @@ If not, make sure that:
 - Your API is running.
 - ngrok is running (`ngrok http 1337`)
 - The correct ngrok URL is pasted into your Disruptive data connector.
+
+Continue to [Exercise3](../Exercise3/README.md).
