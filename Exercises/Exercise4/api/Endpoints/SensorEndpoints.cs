@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Exercise4.Endpoints
 {
-    public static class Bookings
+    public static class SensorEndpoints
     {
         public static void RegisterSensorEndpoints(this IEndpointRouteBuilder routes)
         {
@@ -36,11 +36,11 @@ namespace Exercise4.Endpoints
 
             // Send the temperature value to all Websocket listeners
             await hubContext.Clients.All.SendTemperature(disruptiveData.Event.Data.Temperature.Value);
-            
+
             // Disruptive will resend the event until it receives a 200 OK
             return TypedResults.Ok();
         }
-        
+
         private static async Task SaveToDatabase(DisruptiveData disruptiveData)
         {
             await using var db = new SensorContext();
@@ -64,6 +64,8 @@ namespace Exercise4.Endpoints
 
             db.Sensors.Update(sensor);
             await db.SaveChangesAsync();
+            
+            Console.WriteLine("Value saved successfully 🎉");
         }
     }
 }

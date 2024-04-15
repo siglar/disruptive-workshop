@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Exercise2.Endpoints
 {
-    public static class Bookings
+    public static class SensorEndpoints
     {
         public static void RegisterSensorEndpoints(this IEndpointRouteBuilder routes)
         {
@@ -29,10 +29,10 @@ namespace Exercise2.Endpoints
 
             Console.WriteLine($"Hello {disruptiveData.Labels.Name}. This is your sensor calling.");
             Console.WriteLine($"The current temperature is {disruptiveData.Event.Data.Temperature.Value}" + "️\u00b0C");
-            
+
             // Send the temperature value to all Websocket listeners
             await hubContext.Clients.All.SendTemperature(disruptiveData.Event.Data.Temperature.Value);
-            
+
             // Disruptive will resend the event until it receives a 200 OK
             return TypedResults.Ok();
         }
