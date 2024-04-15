@@ -10,7 +10,7 @@ The API is written in C# with .NET 8. Therefore there are a couple of requiremen
 - Install the .NET 8 SDK. Find and download (the newest version) [here](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 - Write `dotnet --info` in a terminal to check that it successfully installed. Might have to restart the terminal first.
 
-In a terminal, navigate to the `Exercise1` directory in this repo and execute `dotnet watch`. The API should now be running on [http://localhost:1337](http://localhost:1337). Swagger should be exposed on [http://localhost:1337/swagger](http://localhost:1337/swagger). Since we ran `dotnet watch` the code should auto recompile on changes, but it's still a bit janky, so you can do `cmd + r` or `ctrl + r` in the terminal to force it to recompile.
+In a terminal, navigate to [api]('./SensorSolution/Exercise1/api') in the `Exercise1` directory in this repo and execute `dotnet watch`. The API should now be running on [http://localhost:1337](http://localhost:1337). Swagger should be exposed on [http://localhost:1337/swagger](http://localhost:1337/swagger). Since we ran `dotnet watch` the code should auto recompile on changes, but it's still a bit janky, so you can do `cmd + r` or `ctrl + r` in the terminal to force it to recompile.
 
 Keep the API running and let's continue.
 

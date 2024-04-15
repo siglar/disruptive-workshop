@@ -17,26 +17,6 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
-      <Content Remove="front-end\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="front-end\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="front-end\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="front-end\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="front-end\package-lock.json" />
-      <_ContentIncludedByDefault Remove="front-end\package.json" />
-      <_ContentIncludedByDefault Remove="front-end\tsconfig.json" />
-      <_ContentIncludedByDefault Remove="front-end\tsconfig.node.json" />
     </ItemGroup>
 
 </Project>
