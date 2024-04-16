@@ -60,4 +60,4 @@ Scroll to the bottom of the page and click `Update data connector`
 
 When this is done, return to where your API is still (hopefully) running. Is it printing sweet, sweet data? If yes, celebrations! 🎉 If no, return to start... 😡 Or call out, and I'll come and help you.
 
-If all is well and good, you can now start [Exercise1](./SensorSolution/Exercise1/README.md).
+If all is well and good, you can now start [Exercise1](Exercises/Exercise1/README.md).
