@@ -1,11 +1,11 @@
-﻿using Exercise4.Models;
+﻿using Exercise5.Models;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Exercise4.Hubs;
+namespace Exercise5.Hubs;
 
 public class TemperatureHub : Hub<ITemperatureHub>
 {
-    public async Task SendTemperature(float temperature)
+    public async Task SendTemperature(TemperatureViewModel temperature)
     {
         await Clients.All.SendTemperature(temperature);
     }

@@ -1,20 +1,34 @@
-using Exercise4.Hubs;
-using Exercise4.Models;
+using Exercise5.Hubs;
+using Exercise5.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Exercise4.Endpoints
+namespace Exercise5.Endpoints
 {
     public static class SensorEndpoints
     {
         public static void RegisterSensorEndpoints(this IEndpointRouteBuilder routes)
         {
             var sensorGroup = routes.MapGroup("").WithTags("Sensor");
+
+            sensorGroup
+                .MapGet("", Get)
+                .WithOpenApi();
             
             sensorGroup
                 .MapPost("", Post)
                 .WithOpenApi();
+        }
+
+        private static async Task<IResult> Get() {
+            await using var db = new SensorContext();
+
+            var databaseValues = await db.SensorValues.OrderByDescending(sv => sv.TimeStamp).Take(10).ToListAsync();
+            
+            var returnValues = databaseValues.Select(sv => new TemperatureViewModel(sv.Temperature, sv.TimeStamp));
+            
+            return TypedResults.Ok(returnValues.OrderBy(r => r.Timestamp));
         }
         
         private static async Task<IResult> Post(
@@ -35,7 +49,12 @@ namespace Exercise4.Endpoints
             await SaveToDatabase(disruptiveData);
 
             // Send the temperature value to all Websocket listeners
-            await hubContext.Clients.All.SendTemperature(disruptiveData.Event.Data.Temperature.Value);
+            var temperatureViewModel = new TemperatureViewModel(
+                disruptiveData.Event.Data.Temperature.Value,
+                disruptiveData.Event.Timestamp
+            );
+            
+            await hubContext.Clients.All.SendTemperature(temperatureViewModel);
 
             // Disruptive will resend the event until it receives a 200 OK
             return TypedResults.Ok();
