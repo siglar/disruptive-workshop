@@ -100,3 +100,5 @@ Then add `await SaveToDatabase(disruptiveData);` somewhere in the Post method.
 The `SaveToDatabase` does what the names says. It checks if the sensor already exists in the database, and saves the new incoming value. If the sensor does not exits, it creates and adds the value in one go.
 
 Now, run your `api` with `dotnet watch` and press your sensor a couple of times. You should see a message celebrating your great achievement 🎉
+
+Continue to [Exercise4](../Exercise4/README.md)

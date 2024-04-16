@@ -250,3 +250,5 @@ Now let's start everything up again. So:
 - run `npm run dev` to start the front end.
 
 If all is good you'll now have a line chart in your front-end. Trigger your sensor to send data and see if the chart auto updates.
+
+Continue to [Exercise5](../Exercise5/README.md)
