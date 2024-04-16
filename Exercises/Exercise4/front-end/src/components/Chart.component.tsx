@@ -35,26 +35,24 @@ const Chart: FC<ChartProps> = (props: ChartProps) => {
   };
 
   const formatDate = (date: string) => {
-    return `${new Date(date).getHours()}:${new Date(
-      date
-    ).getMinutes()}:${new Date(date).getSeconds()}`;
+    const currentDate = new Date(date);
+
+    return `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
   };
 
   return (
-    <div className="App">
-      <LineChart width={1000} height={300} data={props.values}>
-        <Line
-          animationEasing={"linear"}
-          animationDuration={250}
-          type="monotone"
-          dataKey="temperature"
-          stroke="#8884d8"
-        />
-        <Tooltip content={(content) => renderTooltip(content)} />
-        <XAxis dataKey="timestamp" tickFormatter={formatDate} />
-        <YAxis />
-      </LineChart>
-    </div>
+    <LineChart width={1000} height={300} data={props.values}>
+      <Line
+        animationEasing={"linear"}
+        animationDuration={250}
+        type="monotone"
+        dataKey="temperature"
+        stroke="#8884d8"
+      />
+      <Tooltip content={(content) => renderTooltip(content)} />
+      <XAxis dataKey="timestamp" tickFormatter={formatDate} />
+      <YAxis />
+    </LineChart>
   );
 };
 

@@ -22,73 +22,51 @@ In another terminal instance, navigate to the `front-end` directory and install 
 
 Open the front-end in your favorite code editor (I use VSCode).
 
-In the `src` directory create a file called: `signalr-connection.ts`. Paste the following content into the file:
-
-```typescript
-import * as signalR from "@microsoft/signalr";
-const URL = "http://localhost:1337/temperatureHub";
-
-class Connector {
-  private connection: signalR.HubConnection;
-
-  public events: (sendTemperature: (temperature: number) => void) => void;
-
-  static instance: Connector;
-
-  constructor() {
-    this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(URL)
-      .withAutomaticReconnect()
-      .build();
-
-    this.connection.start().catch((err) => document.write(err));
-
-    this.events = (sendTemperature) => {
-      this.connection.on("sendTemperature", (temperature) => {
-        sendTemperature(temperature);
-      });
-    };
-  }
-
-  public static getInstance(): Connector {
-    if (!Connector.instance) Connector.instance = new Connector();
-    return Connector.instance;
-  }
-}
-export default Connector.getInstance;
-```
-
-This file now contains what we need to listen for messages from our SignalR hub. We say that there is an event called `SendTemperature` which will contain numeric value. This is actually a websocket connection broadcasting our temperature.
-
 In the `src` directory create a folder directory called `pages`. In the `pages` directory create a file called `Landing.page.tsx`. Paste the following content:
 
 ```typescript
-import { FC, useEffect, useState } from "react";
-import Connector from "../signalr-connection";
-
 const LandingPage: FC = () => {
-  const { events } = Connector();
-
+  const [connection, setConnection] = useState<null | HubConnection>(null);
   const [currentTemperature, setCurrentTemperature] = useState<number>(0);
 
+  // Connect to temperatureHub websocket on component mount
   useEffect(() => {
-    events((temperature) => setCurrentTemperature(temperature));
-  });
+    const connect = new HubConnectionBuilder()
+      .withUrl("http://localhost:1337/temperatureHub")
+      .withAutomaticReconnect()
+      .build();
+
+    setConnection(connect);
+  }, []);
+
+  // Callback that is triggered when we receive a temperature
+  useEffect(() => {
+    if (connection) {
+      if (connection.state == HubConnectionState.Connected) return;
+
+      connection
+        .start()
+        .then(() => {
+          connection.on("sendTemperature", (temperature) => {
+            setCurrentTemperature(temperature);
+          });
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [connection]);
 
   return (
-    <div className="App">
-      <span>
-        Current temperature:{" "}
-        <span style={{ color: "green" }}>{currentTemperature}</span>
-      </span>
-    </div>
+    <span>
+      Current temperature:{" "}
+      <span style={{ color: "green" }}>{currentTemperature}</span>
+    </span>
   );
 };
 
 export default LandingPage;
 ```
 
-This React component will be our landing page. On initialization it'll create a `Connnector` where we can listen for events. When we receive the event we'll render it in the component.
+This React component will be our landing page. This file now contains what we need to listen for messages from our SignalR hub. We say that there is an event called `SendTemperature` which will contain numeric value. This is actually a websocket connection broadcasting our temperature.
 
 Navigate to `App.tsx` and replace the content with:
 
@@ -98,7 +76,11 @@ import "./App.css";
 import LandingPage from "./pages/Landing.page";
 
 const App: FC = () => {
-  return <LandingPage />;
+  return (
+    <div className="App">
+      <LandingPage />
+    </div>
+  );
 };
 
 export default App;
