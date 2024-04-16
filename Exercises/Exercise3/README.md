@@ -16,7 +16,7 @@ namespace Exercise4;
 public class SensorContext : DbContext
 {
     public DbSet<Sensor> Sensors { get; set; }
-    public DbSet<Sensor> SensorValues { get; set; }
+    public DbSet<SensorValue> SensorValues { get; set; }
 
     public string DbPath { get; }
 

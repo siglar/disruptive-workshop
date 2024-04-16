@@ -31,7 +31,7 @@ namespace Exercise4.Migrations
                     b.HasIndex("DeviceId")
                         .IsUnique();
 
-                    b.ToTable("Sensor");
+                    b.ToTable("Sensors");
                 });
 
             modelBuilder.Entity("Exercise4.SensorValue", b =>
@@ -53,7 +53,7 @@ namespace Exercise4.Migrations
 
                     b.HasIndex("SensorId");
 
-                    b.ToTable("SensorValue");
+                    b.ToTable("SensorValues");
                 });
 
             modelBuilder.Entity("Exercise4.SensorValue", b =>

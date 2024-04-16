@@ -5,7 +5,7 @@ import LandingPage from "./pages/Landing.page";
 const App: FC = () => {
   return (
     <div className="App">
-      <LandingPage />
+      return <LandingPage />
     </div>
   );
 };

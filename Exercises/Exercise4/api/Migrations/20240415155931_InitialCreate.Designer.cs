@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exercise4.Migrations
 {
     [DbContext(typeof(SensorContext))]
-    [Migration("20240415133817_InitialCreate")]
+    [Migration("20240415155931_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,7 +34,7 @@ namespace Exercise4.Migrations
                     b.HasIndex("DeviceId")
                         .IsUnique();
 
-                    b.ToTable("Sensor");
+                    b.ToTable("Sensors");
                 });
 
             modelBuilder.Entity("Exercise4.SensorValue", b =>
@@ -56,7 +56,7 @@ namespace Exercise4.Migrations
 
                     b.HasIndex("SensorId");
 
-                    b.ToTable("SensorValue");
+                    b.ToTable("SensorValues");
                 });
 
             modelBuilder.Entity("Exercise4.SensorValue", b =>
