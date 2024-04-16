@@ -13,10 +13,24 @@ namespace Exercise4.Endpoints
             var sensorGroup = routes.MapGroup("").WithTags("Sensor");
 
             sensorGroup
+                .MapGet("", Get)
+                .WithOpenApi();
+            
+            sensorGroup
                 .MapPost("", Post)
                 .WithOpenApi();
         }
 
+        private static async Task<IResult> Get() {
+            await using var db = new SensorContext();
+
+            var databaseValues = await db.SensorValues.OrderByDescending(sv => sv.TimeStamp).Take(10).ToListAsync();
+            
+            var returnValues = databaseValues.Select(sv => new TemperatureViewModel(sv.Temperature, sv.TimeStamp));
+            
+            return TypedResults.Ok(returnValues.OrderBy(r => r.Timestamp));
+        }
+        
         private static async Task<IResult> Post(
             [FromBody] DisruptiveData disruptiveData,
             IHubContext<TemperatureHub, ITemperatureHub> hubContext
@@ -35,7 +49,7 @@ namespace Exercise4.Endpoints
             await SaveToDatabase(disruptiveData);
 
             // Send the temperature value to all Websocket listeners
-            await hubContext.Clients.All.SendTemperature(disruptiveData.Event.Data.Temperature.Value);
+            await hubContext.Clients.All.SendTemperature(new TemperatureViewModel(disruptiveData.Event.Data.Temperature.Value, disruptiveData.Event.Timestamp));
 
             // Disruptive will resend the event until it receives a 200 OK
             return TypedResults.Ok();

@@ -1,6 +1,3 @@
 ﻿namespace Exercise4.Models;
 
-public class TemperatureViewModel
-{
-    
-}
+public record TemperatureViewModel(float Temperature, DateTime Timestamp);
